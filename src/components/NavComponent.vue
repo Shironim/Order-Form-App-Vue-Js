@@ -1,9 +1,16 @@
 <template>
-    <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand text-white font-weight-bold" href="#">Order Form App</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -14,7 +21,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
-          </li> -->
+          </li>-->
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -26,11 +33,15 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-          </li> -->
-          
+          </li>-->
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Apa yang kamu cari ?" aria-label="Search">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Apa yang kamu cari ?"
+            aria-label="Search"
+          />
           <button class="btn my-2 my-sm-0 text-black" type="submit">Search</button>
         </form>
       </div>
@@ -40,9 +51,7 @@
 
 <script>
 export default {
-  name: 'NavComponent',
-  components : {
-    
-  }
-}
+  name: "NavComponent",
+  components: {}
+};
 </script>

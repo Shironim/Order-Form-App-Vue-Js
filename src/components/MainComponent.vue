@@ -5,30 +5,70 @@
         <div class="col-sm-12">
           <div class="text-right">
             <a href="#">
-              <button class="btn">List View</button>
+              <button
+                :class="{ 'btn-primary' : layout == 'list' }"
+                @click="layout = 'list'"
+                class="btn"
+              >List View</button>
             </a>
             <a href="#">
-              <button class="btn btn-primary">Grid View</button>
+              <button
+                :class="{ 'btn-primary' : layout == 'grid' }"
+                @click="layout = 'grid'"
+                class="btn"
+              >Grid View</button>
             </a>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div
-          v-for="product in products"
-          :key="product.id"
-          @click="toogleActive(product)"
-          class="col-sm-4 card-col"
-        >
-          <div class="card" :class="{ 'is-active': product.active }">
-            <img class="card-img-top" :src="product.image" alt="Card image cap" />
-            <div class="card-body">
-              <div class="card-caption d-flex justify-content-between">
-                <p class="card-text name">{{ product.name }}</p>
-                <p class="card-text price">{{ product.price | currency }}</p>
+      <!-- Akan Ditampilkan Ketika layout Grid -->
+      <div v-if="layout === 'grid'" class="grid">
+        <div class="row">
+          <div
+            v-for="product in products"
+            :key="product.id"
+            @click="toogleActive(product)"
+            class="col-sm-4 card-col"
+          >
+            <div class="card" :class="{ 'is-active': product.active }">
+              <img class="card-img-top" :src="product.image" alt="Card image cap" />
+              <div class="card-body">
+                <div class="card-caption d-flex justify-content-between">
+                  <p class="card-text name">{{ product.name }}</p>
+                  <p class="card-text price">{{ product.price | currency }}</p>
+                </div>
+                <div class="card-btn text-center">
+                  <button type="button" class="btn">Buy</button>
+                </div>
               </div>
-              <div class="card-btn text-center">
-                <button type="button" class="btn">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="layout === 'list'" class="list">
+        <div class="row">
+          <div v-for="product in products"
+            :key="product.id"
+            @click="toogleActive(product)" 
+            class="col-sm-6 card-col">
+            <div class="card" :class="{ 'is-active': product.active }">
+              <div class="row mr-0 ml-0">
+                <div class="col p-0">
+                  <div class="card-header">
+                    <img class="card-img-top" :src="product.image" alt="Card image cap">
+                  </div>
+                </div>
+                <div class="col d-flex align-self-center">
+                  <div class="card-body">
+                    <div class="card-caption d-flex justify-content-between mb-4">
+                      <p class="card-text name">{{ product.name }}</p>
+                      <p class="card-text price">{{ product.price | currency }}</p>
+                    </div>
+                    <div class="card-btn text-center">
+                      <button type="button" class="btn">Buy</button>
+                    </div>              
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -48,31 +88,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Chesse Pizza</td>
-            <td>$15</td>
+          <tr  v-for="menu in menuPilihan" :key="menu.id">
+            <th scope="row">#</th>
+            <td>{{ menu.name }}</td>
+            <td>{{ menu.price }}</td>
             <td>1 Porsi</td>
-            <td>$15</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Chesse Pizza</td>
-            <td>$15</td>
-            <td>2 Porsi</td>
-            <td>$30</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Chesse Pizza</td>
-            <td>$15</td>
-            <td>3 Porsi</td>
-            <td>$45</td>
+            <td>{{ menu.price }}</td>
           </tr>
           <tr>
             <th scope="row">#</th>
             <td colspan="3"></td>
-            <th>Total Harga</th>
+            <th><h3>Total Harga</h3></th>
           </tr>
           <tr>
             <th scope="row">#</th>
@@ -98,9 +124,16 @@ export default {
       type: Array
     }
   },
+  data: function() {
+    return {
+      // Mode layout: "list" dan "grid"
+      layout: "grid"
+    };
+  },
   methods: {
     toogleActive: function(product) {
       product.active = !product.active;
+      
     },
     total: function() {
       var total = 0;
@@ -111,11 +144,23 @@ export default {
       });
 
       return total;
-    }
+    },
+    
   },
   filters: {
     currency: function(value) {
       return "Rp " + value.toFixed(2);
+    }
+  },
+  computed: {
+    // Computed property untuk menyimpan produk-produk yang sesuai dengan searchTermss
+    menuPilihan: function () {
+      return this.products.filter(function (product) {
+        if (product.active) {
+          return product;
+        }
+      });
+
     }
   }
 };
