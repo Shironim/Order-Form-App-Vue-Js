@@ -1,3 +1,6 @@
+# Order-Form-App-Vue-Js
+Aplikasi Order Form Menggunakan Vue Js dengan fitur search, kalkulasi total harga, dan Switchable View
+
 # nav-login-register
 
 ## Project setup
@@ -22,3 +25,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
