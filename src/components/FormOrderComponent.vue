@@ -1,5 +1,5 @@
 <template>
-    <section class="section">
+  <section class="section">
     <div class="container">
       <h3>Total Pembelian</h3>
       <table class="table text-center">
@@ -51,9 +51,7 @@
 </template>
 <script>
 export default {
-  name:'FormOrderComponent',
-  component :{
-    
-  }
-}
+  name: "FormOrderComponent",
+  component: {}
+};
 </script>
